@@ -2,16 +2,11 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :ex_aws,
-  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, {:awscli, "default", 30}, :instance_role],
-  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, {:awscli, "default", 30}, :instance_role]
-
-# This configuration is loaded before any dependency and is restricted
-# to this project. If another project depends on this project, this
-# file won't be loaded nor affect the parent project. For this reason,
-# if you want to provide default values for your application for
-# 3rd-party users, it should be done in your "mix.exs" file.
-
+  config :ex_aws,
+    # access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, {:awscli, "staging", 30}, :instance_role],
+    # secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, {:awscli, "staging", 30}, :instance_role]
+    access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, {:awscli, System.get_env("AWS_PROFILE"), 30}, :instance_role],
+    secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, {:awscli, System.get_env("AWS_PROFILE"), 30}, :instance_role]
 # You can configure for your application as:
 #
 #     config :awsmanager, key: :value
